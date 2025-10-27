@@ -8,7 +8,7 @@
   }
   
   body {
-    @apply bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text transition-colors duration-300;
+    @apply bg-white dark:bg-dark-bg text-gray-900 dark:text-white transition-colors duration-300;
   }
 }
 

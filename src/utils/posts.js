@@ -8,7 +8,7 @@ export const mockPosts = [
     date: '2023-01-01',
     tags: ['Design', 'Research', 'Presentation'],
     excerpt: 'How do you create compelling presentations that wow your colleagues and impress your managers?',
-    heroImage: '/images/ux-review.jpg',
+    heroImage: 'https://picsum.photos/800/400?random=1',
     body: `# UX Review Presentations
 
 Creating compelling presentations that wow your colleagues and impress your managers requires a combination of storytelling, data visualization, and effective communication.
@@ -45,7 +45,7 @@ Remember, the goal is not just to present data, but to inspire action and drive 
     date: '2023-01-15',
     tags: ['Design', 'Research'],
     excerpt: 'Linear helps streamline software projects, sprints, tasks, and bug tracking. Here\'s how to get started...',
-    heroImage: '/images/linear-migration.jpg',
+    heroImage: 'https://picsum.photos/800/400?random=2',
     body: `# Migrating to Linear 101
 
 Linear is a modern issue tracking tool that helps teams streamline their software development process.
@@ -82,7 +82,7 @@ Migrating to Linear can significantly improve your team\'s productivity and coll
     date: '2023-02-01',
     tags: ['Design', 'Research'],
     excerpt: 'The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing...',
-    heroImage: '/images/api-stack.jpg',
+    heroImage: 'https://picsum.photos/800/400?random=3',
     body: `# Building Your API Stack
 
 Modern API development requires a comprehensive stack of tools and technologies.
@@ -124,7 +124,7 @@ Building a solid API stack is essential for creating robust and maintainable API
     date: '2023-02-15',
     tags: ['Design', 'Interface'],
     excerpt: 'A grid system is a design tool used to arrange content on a webpage. It is a series of vertical and horizontal lines that create a matrix of intersecting points, which can be used to align and organize page elements.',
-    heroImage: '/images/grid-system.jpg',
+    heroImage: 'https://picsum.photos/800/400?random=4',
     body: `# Grid System for Better Design User Interface
 
 Grid systems are fundamental to creating consistent and visually appealing user interfaces.

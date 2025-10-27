@@ -1,104 +1,54 @@
 <template>
   <div class="bg-white dark:bg-dark-bg min-h-screen">
-    <!-- Hero Section -->
-    <section class="relative border-t border-b border-gray-200 dark:border-gray-700">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="max-w-4xl mx-auto">
-          <!-- Back Button -->
+
+
+    <!-- Content Section -->
+    <section class="py-12">
+
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                          <!-- Post Meta -->
+          <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-4">
+            {{ formatDate(post.date) }}
+          </div>
+        <!-- Main Content -->
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <!-- Hero Image -->
+          <div v-if="post.heroImage" class="mb-8">
+            <img 
+              :src="post.heroImage" 
+              :alt="post.title"
+              class="w-full h-64 md:h-96 object-cover rounded-lg"
+            />
+          </div>
+          
+          <!-- Content -->
+          <div v-html="postContent"></div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between">
           <button 
-            @click="$router.back()"
-            class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 mb-8 transition-colors duration-200"
+            v-if="prevPost"
+            @click="$router.push({ name: 'PostDetail', params: { slug: prevPost.slug } })"
+            class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
-            <span>返回</span>
+            <span>上一篇</span>
           </button>
           
-          <!-- Post Meta -->
-          <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-4">
-            {{ formatDate(post.date) }}
-          </div>
-          
-          <!-- Title -->
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            {{ post.title }}
-          </h1>
-          
-          <!-- Excerpt -->
-          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-            {{ post.excerpt }}
-          </p>
-          
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2">
-            <span 
-              v-for="tag in post.tags" 
-              :key="tag"
-              class="tag"
-              :class="getTagColor(tag)"
-            >
-              {{ tag }}
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          <!-- Main Content -->
-          <div class="lg:col-span-3">
-            <div class="prose prose-lg dark:prose-invert max-w-none">
-              <!-- Hero Image -->
-              <div v-if="post.heroImage" class="mb-8">
-                <img 
-                  :src="post.heroImage" 
-                  :alt="post.title"
-                  class="w-full h-64 md:h-96 object-cover rounded-lg"
-                />
-              </div>
-              
-              <!-- Content -->
-              <div v-html="postContent"></div>
-            </div>
-            
-            <!-- Navigation -->
-            <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between">
-              <button 
-                v-if="prevPost"
-                @click="$router.push({ name: 'PostDetail', params: { slug: prevPost.slug } })"
-                class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                <span>上一篇</span>
-              </button>
-              
-              <button 
-                v-if="nextPost"
-                @click="$router.push({ name: 'PostDetail', params: { slug: nextPost.slug } })"
-                class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 ml-auto"
-              >
-                <span>下一篇</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Sidebar -->
-          <div class="lg:col-span-1">
-            <Sidebar 
-              :recent-posts="recentPosts" 
-              :all-tags="allTags"
-              @tag-click="handleTagClick"
-            />
-          </div>
+          <button 
+            v-if="nextPost"
+            @click="$router.push({ name: 'PostDetail', params: { slug: nextPost.slug } })"
+            class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 ml-auto"
+          >
+            <span>下一篇</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

@@ -2,33 +2,33 @@
   <aside class="w-full lg:w-80">
     <!-- Recent Posts -->
     <div class="card p-6 mb-6">
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">
         最近内容
       </h3>
       
-      <div class="space-y-4">
+      <div class="space-y-6">
         <div 
           v-for="post in recentPosts" 
           :key="post.slug"
           class="group cursor-pointer"
           @click="$router.push({ name: 'PostDetail', params: { slug: post.slug } })"
         >
-          <div class="flex items-start space-x-3">
+          <div class="flex items-start space-x-4">
             <!-- Thumbnail -->
             <div class="flex-shrink-0">
               <img 
                 :src="post.heroImage || '/images/placeholder-thumb.jpg'" 
                 :alt="post.title"
-                class="w-12 h-12 object-cover rounded"
+                class="w-16 h-16 object-cover rounded-lg"
               />
             </div>
             
             <!-- Content -->
             <div class="flex-1 min-w-0">
-              <h4 class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-brand transition-colors duration-200 line-clamp-2">
+              <h4 class="text-base font-medium text-gray-900 dark:text-white group-hover:text-brand transition-colors duration-200 line-clamp-2">
                 {{ post.title }}
               </h4>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
                 {{ formatDate(post.date) }}
               </p>
             </div>
