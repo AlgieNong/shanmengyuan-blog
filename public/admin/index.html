@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>内容管理系统</title>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </head>
+  <body>
+    <!-- Decap CMS Mount Point -->
+    <script>
+      DecapCMS.init({
+        config: {
+          backend: {
+            name: 'git-gateway',
+            branch: 'main'
+          },
+          local_backend: true,
+          media_folder: "public/images",
+          public_folder: "/images",
+          collections: [
+            {
+              name: "posts",
+              label: "文章",
+              label_singular: "文章",
+              folder: "content/posts",
+              create: true,
+              slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+              fields: [
+                { label: "标题", name: "title", widget: "string" },
+                { label: "发布日期", name: "date", widget: "datetime" },
+                { label: "标签", name: "tags", widget: "list", default: [] },
+                { label: "摘要", name: "excerpt", widget: "text" },
+                {
+                  label: "头图",
+                  name: "heroImage",
+                  widget: "image",
+                  allow_multiple: false
+                },
+                { label: "草稿", name: "draft", widget: "boolean", default: false },
+                { label: "正文", name: "body", widget: "markdown" }
+              ]
+            }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>
