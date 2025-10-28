@@ -29,7 +29,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/' : '/'),
+  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/smy-blog.github.io/' : '/'),
   routes
 })
 
