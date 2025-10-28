@@ -6,7 +6,7 @@ backend:
 local_backend: true
 
 media_folder: "public/images"
-public_folder: "/images"
+public_folder: "/smy-blog.github.io/images"
 
 collections:
   - name: "posts"
