@@ -1,2 +1,2 @@
-# shanmengyuan-blog
-我的个人博客
+# smy-blog
+个人博客
