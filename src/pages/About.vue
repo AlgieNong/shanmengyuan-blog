@@ -84,7 +84,7 @@
           <!-- Sidebar -->
           <div class="lg:col-span-1">
             <div class="card p-6 sticky top-6">
-              <!-- Avatar -->
+              <!-- 头像占位 -->
               <div class="text-center mb-6">
                 <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                   <span class="text-4xl text-gray-400">👨‍💻</span>
@@ -118,7 +118,7 @@
                 </div>
               </div>
 
-              <!-- Social Links -->
+              <!-- 社交链接 -->
               <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <div class="flex justify-center space-x-4">
                   <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">

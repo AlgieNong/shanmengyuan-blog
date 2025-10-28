@@ -9,9 +9,9 @@
       />
     </div>
     
-    <!-- Content -->
+    <!-- 内容区域 -->
     <div class="p-6">
-      <!-- Date -->
+      <!-- 日期 -->
       <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-2">
         {{ formatDate(post.date) }}
       </div>
@@ -21,7 +21,7 @@
         {{ post.title }}
       </h3>
       
-      <!-- Excerpt -->
+      <!-- 摘要 -->
       <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
         {{ post.excerpt }}
       </p>
@@ -38,7 +38,7 @@
         </span>
       </div>
       
-      <!-- Read More -->
+      <!-- 阅读更多按钮 -->
       <div class="mt-4 flex justify-end">
         <router-link 
           :to="{ name: 'PostDetail', params: { slug: post.slug } }"

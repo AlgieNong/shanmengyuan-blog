@@ -2,7 +2,7 @@
   <div class="bg-white dark:bg-dark-bg min-h-screen">
 
 
-    <!-- Content Section -->
+    <!-- 内容区域 -->
     <section class="py-12">
 
 
@@ -11,7 +11,7 @@
           <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-4">
             {{ formatDate(post.date) }}
           </div>
-        <!-- Main Content -->
+        <!-- 主体内容 -->
         <div class="prose prose-lg dark:prose-invert max-w-none">
           <!-- Hero Image -->
           <div v-if="post.heroImage" class="mb-8">
@@ -22,11 +22,11 @@
             />
           </div>
           
-          <!-- Content -->
+          <!-- 正文内容 -->
           <div v-html="postContent"></div>
         </div>
         
-        <!-- Navigation -->
+        <!-- 上下篇导航 -->
         <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between">
           <button 
             v-if="prevPost"

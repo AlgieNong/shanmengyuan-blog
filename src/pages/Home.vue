@@ -11,7 +11,7 @@
       </div>
     </section>
 
-    <!-- Recent Posts Section -->
+    <!-- 最近文章区域 -->
     <section class="py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8">
@@ -27,7 +27,7 @@
           />
         </div>
 
-        <!-- All Posts Section -->
+        <!-- 全部文章区域 -->
         <div class="mb-8">
           <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8">
             所有
@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <!-- Pagination -->
+        <!-- 分页区域 -->
         <div class="flex justify-center items-center space-x-2 border-t border-gray-200 dark:border-gray-700 pt-8">
           <button class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

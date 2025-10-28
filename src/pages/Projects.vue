@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white dark:bg-dark-bg min-h-screen">
-    <!-- Hero Section -->
+    <!-- 顶部横幅（Hero）区域 -->
     <section class="relative border-t border-b border-gray-200 dark:border-gray-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="text-center">
@@ -17,7 +17,7 @@
     <!-- Projects Grid -->
     <section class="py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Filter Tabs -->
+        <!-- 分类筛选标签 -->
         <div class="flex space-x-4 mb-8 border-b border-gray-200 dark:border-gray-700">
           <button 
             v-for="category in categories" 
@@ -97,7 +97,7 @@
           </div>
         </div>
 
-        <!-- Empty State -->
+        <!-- 空状态展示 -->
         <div v-if="filteredProjects.length === 0" class="text-center py-12">
           <div class="text-gray-400 dark:text-gray-500">
             <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +125,7 @@ const projects = ref([
     title: 'Vue 3 博客系统',
     category: '前端开发',
     description: '基于 Vue 3 + Vite + Tailwind CSS 构建的现代化博客系统，支持暗色模式和多语言。',
-    image: '/images/project-vue-blog.jpg',
+    image: 'https://picsum.photos/seed/vue-blog/600/400',
     technologies: ['Vue 3', 'Vite', 'Tailwind CSS', 'TypeScript'],
     demoUrl: '#',
     githubUrl: '#'
@@ -145,7 +145,7 @@ const projects = ref([
     title: '开源工具库',
     category: '开源项目',
     description: '为开发者提供的实用工具函数库，包含常用的数据处理和验证方法。',
-    image: '/images/project-utils.jpg',
+    image: 'https://picsum.photos/seed/utils-lib/600/400',
     technologies: ['JavaScript', 'TypeScript', 'Jest', 'Rollup'],
     demoUrl: '#',
     githubUrl: '#'

@@ -18,7 +18,7 @@
     <section class="py-12">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <!-- Contact Form -->
+          <!-- 联系表单 -->
           <div class="card p-8">
             <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
               发送消息
@@ -92,9 +92,9 @@
             </form>
           </div>
 
-          <!-- Contact Info -->
+          <!-- 联系详情 -->
           <div class="space-y-8">
-            <!-- Contact Details -->
+            <!-- 联系方式列表 -->
             <div class="card p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 联系信息
@@ -140,7 +140,7 @@
               </div>
             </div>
 
-            <!-- Response Time -->
+            <!-- 响应时间说明 -->
             <div class="card p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 响应时间
@@ -158,7 +158,7 @@
               </div>
             </div>
 
-            <!-- Social Links -->
+            <!-- 社交媒体链接 -->
             <div class="card p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 社交媒体

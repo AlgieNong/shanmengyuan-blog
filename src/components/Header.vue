@@ -2,7 +2,7 @@
   <header class="bg-white dark:bg-dark-bg border-b border-gray-200 dark:border-gray-700">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
+        <!-- 标识（Logo） -->
         <div class="flex-shrink-0">
           <router-link to="/" class="text-2xl font-bold text-gray-900 dark:text-white">
             我的博客
@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <!-- Theme Toggle -->
+        <!-- 主题切换 -->
         <div class="flex items-center space-x-4">
           <ThemeToggle />
           
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <!-- Mobile menu -->
+      <!-- 移动端菜单 -->
       <div v-show="isMobileMenuOpen" class="md:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700">
           <router-link 

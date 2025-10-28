@@ -7,7 +7,7 @@
           © 2023 我的博客. 保留所有权利.
         </div>
         
-        <!-- Social Links -->
+        <!-- 社交链接 -->
         <div class="flex space-x-6 mt-4 md:mt-0">
           <a href="#" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors duration-200">
             <span class="sr-only">Twitter</span>

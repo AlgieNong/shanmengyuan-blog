@@ -14,7 +14,7 @@
           @click="$router.push({ name: 'PostDetail', params: { slug: post.slug } })"
         >
           <div class="flex items-start space-x-4">
-            <!-- Thumbnail -->
+            <!-- 缩略图 -->
             <div class="flex-shrink-0">
               <img 
                 :src="post.heroImage || '/images/placeholder-thumb.jpg'" 
@@ -37,7 +37,7 @@
       </div>
     </div>
     
-    <!-- Tags Cloud -->
+    <!-- 标签云 -->
     <div class="card p-6">
       <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
         标签云

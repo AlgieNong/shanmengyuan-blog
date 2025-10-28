@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: AlgieNong/smy-blog.github.io
   branch: main
 
 local_backend: true
