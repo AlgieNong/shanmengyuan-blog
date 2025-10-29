@@ -11,7 +11,9 @@
   "dependencies": {
     "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.9.0",
     "marked": "^9.1.2",
+    "plantuml-encoder": "^1.4.0",
     "pinia": "^3.0.3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"

@@ -17,7 +17,7 @@
             <!-- 缩略图 -->
             <div class="flex-shrink-0">
               <img 
-                :src="post.heroImage || '/images/placeholder-thumb.jpg'" 
+                :src="normalizeUrl(post.heroImage) || '/images/placeholder-thumb.jpg'" 
                 :alt="post.title"
                 class="w-16 h-16 object-cover rounded-lg"
               />
@@ -62,6 +62,16 @@
 import { defineProps, defineEmits } from 'vue'
 
 defineEmits(['tagClick'])
+
+function normalizeUrl(url) {
+  if (!url) return url
+  const isDev = import.meta.env.DEV
+  const PROJECT_BASE = '/smy-blog.github.io/'
+  if (isDev && typeof url === 'string' && url.startsWith(PROJECT_BASE)) {
+    return url.replace(PROJECT_BASE, '/')
+  }
+  return url
+}
 
 const props = defineProps({
   recentPosts: {

@@ -3,7 +3,7 @@
     <!-- Image -->
     <div class="relative overflow-hidden">
       <img 
-        :src="post.heroImage || '/images/placeholder.jpg'" 
+        :src="normalizeUrl(post.heroImage) || '/images/placeholder.jpg'" 
         :alt="post.title"
         class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
       />
@@ -56,6 +56,16 @@
 
 <script setup>
 import { defineProps } from 'vue'
+
+function normalizeUrl(url) {
+  if (!url) return url
+  const isDev = import.meta.env.DEV
+  const PROJECT_BASE = '/smy-blog.github.io/'
+  if (isDev && typeof url === 'string' && url.startsWith(PROJECT_BASE)) {
+    return url.replace(PROJECT_BASE, '/')
+  }
+  return url
+}
 
 const props = defineProps({
   post: {

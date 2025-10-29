@@ -114,6 +114,16 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+function normalizeUrl(url) {
+  if (!url) return url
+  const isDev = import.meta.env.DEV
+  const PROJECT_BASE = '/smy-blog.github.io/'
+  if (isDev && typeof url === 'string' && url.startsWith(PROJECT_BASE)) {
+    return url.replace(PROJECT_BASE, '/')
+  }
+  return url
+}
+
 const activeCategory = ref('全部')
 
 const categories = ['全部', '前端开发', 'UI设计', '开源项目', '个人作品']

@@ -1,8 +1,23 @@
 import fm from 'front-matter'
+import { encode as encodePlantUML } from 'plantuml-encoder'
 
 // 使用 Vite 的 import.meta.glob 读取 Markdown 源文件（原始字符串）
 // 注意：本文件位于 src/utils/，到 content/posts/ 的相对路径为 ../../content/posts/*.md
 const files = import.meta.glob('../../content/posts/*.md', { as: 'raw', eager: true })
+
+function transformPlantUML(md) {
+  if (!md) return md
+  const replacer = (match, lang, code) => {
+    try {
+      const encoded = encodePlantUML(code.trim())
+      const src = `https://www.plantuml.com/plantuml/svg/${encoded}`
+      return `![](${src})`
+    } catch (e) {
+      return match
+    }
+  }
+  return md.replace(/```(plantuml|puml)\n([\s\S]*?)\n```/g, replacer)
+}
 
 function toSlug(path) {
   // 例如 ../../content/posts/2025-01-10-vite-and-vue3.md -> 2025-01-10-vite-and-vue3
@@ -20,7 +35,7 @@ function normalizePost(raw, slug) {
     excerpt: attributes?.excerpt || '',
     heroImage: attributes?.heroImage || '',
     draft: !!attributes?.draft,
-    body: body || ''
+    body: transformPlantUML(body || '')
   }
 }
 
@@ -39,7 +54,7 @@ export function getPostBySlug(posts, slug) {
 // 解析单个 Markdown 字符串，返回 { front matter 展开的字段, body }
 export function parseMarkdown(content) {
   const { attributes, body } = fm(content)
-  return { ...attributes, body }
+  return { ...attributes, body: transformPlantUML(body) }
 }
 
 // 获取所有标签

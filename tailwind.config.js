@@ -20,7 +20,27 @@ export default {
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
-      }
+      },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            /* 保留代码的内联样式形态，不覆盖颜色，以便由 highlight.js 主题控制 */
+            code: {
+              padding: '0.125rem 0.25rem',
+              borderRadius: '0.25rem',
+            },
+          },
+        },
+        invert: {
+          css: {
+            /* 暗色时也不覆盖颜色，让高亮主题自行处理 */
+            code: {
+              padding: '0.125rem 0.25rem',
+              borderRadius: '0.25rem',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [
