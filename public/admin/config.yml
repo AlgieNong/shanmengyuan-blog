@@ -2,8 +2,11 @@ backend:
   name: github
   repo: AlgieNong/smy-blog.github.io
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
-local_backend: true
+# 网络模式，移除 local_backend
+# local_backend: true
 
 media_folder: "public/images"
 public_folder: "/smy-blog.github.io/images"
