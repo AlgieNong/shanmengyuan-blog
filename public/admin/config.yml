@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
+  site_id: chipper-dango-80dd35
 
 # 网络模式，移除 local_backend
 # local_backend: true
