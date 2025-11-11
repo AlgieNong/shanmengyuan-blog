@@ -1,9 +1,16 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: AlgieNong/smy-blog.github.io
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  app_id: b9a8cb90-ab2f-4529-a3e7-b8f7db05e647
+
+# 网络模式，移除 local_backend
+# local_backend: true
 
 media_folder: "public/images"
-public_folder: "/images"  # Netlify 托管时不需要项目前缀
+public_folder: "/smy-blog.github.io/images"
 
 collections:
   - name: "posts"

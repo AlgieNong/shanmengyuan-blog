@@ -25,14 +25,6 @@ const routes = [
     path: '/post/:slug',
     name: 'PostDetail',
     component: () => import('../pages/PostDetail.vue')
-  },
-  {
-    // 忽略 /admin 路径，让其访问静态文件
-    path: '/admin/:pathMatch(.*)*',
-    beforeEnter: () => {
-      // 不做任何处理，让浏览器直接访问静态文件
-      window.location.href = '/admin/'
-    }
   }
 ]
 
