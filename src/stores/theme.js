@@ -41,7 +41,7 @@ export const useThemeStore = defineStore('theme', () => {
         const link = document.createElement('link')
         link.id = id
         link.rel = 'stylesheet'
-        link.href = '/hljs/github-dark.css'
+        link.href = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css'
         document.head.appendChild(link)
       }
     } else {
@@ -57,7 +57,7 @@ export const useThemeStore = defineStore('theme', () => {
         const link = document.createElement('link')
         link.id = id
         link.rel = 'stylesheet'
-        link.href = '/hljs/github-light.css'
+        link.href = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css'
         document.head.appendChild(link)
       }
     } else {
