@@ -4,29 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>内容管理系统</title>
-    <script>
-      // 启用手动初始化，需在 decap-cms.js 之前设置
-      window.CMS_MANUAL_INIT = true;
-      window.DECAP_CMS_MANUAL_INIT = true;
-    </script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script defer src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
     <div id="nc-root"></div>
-    <script>
-      function initCMS() {
-        const api = window.CMS || window.DecapCMS;
-        if (api && api.init) {
-          api.init();
-        } else {
-          document.body.insertAdjacentHTML('beforeend', '<p>CMS 脚本未加载，请检查网络或控制台报错。</p>');
-        }
-      }
-      if (document.readyState === 'loading') {
-        window.addEventListener('DOMContentLoaded', initCMS);
-      } else {
-        initCMS();
-      }
-    </script>
   </body>
 </html>
