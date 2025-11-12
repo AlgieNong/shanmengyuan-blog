@@ -1,10 +1,16 @@
 <template>
   <div class="bg-white dark:bg-dark-bg min-h-screen">
     <!-- Hero Section -->
-    <section class="relative border-t border-b border-gray-200 dark:border-gray-700">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <section class="relative border-b border-gray-200 dark:border-gray-700 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-dark-bg dark:to-gray-800 overflow-hidden">
+      <!-- 背景装饰 -->
+      <div class="absolute inset-0 opacity-5 dark:opacity-10">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 relative z-10">
         <div class="text-center">
-          <h1 class="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8">
+          <h1 class="text-6xl md:text-8xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-purple-400 dark:to-blue-400">
             关于我
           </h1>
         </div>

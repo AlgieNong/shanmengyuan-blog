@@ -1,57 +1,63 @@
 <template>
-  <article class="card hover:shadow-xl transition-shadow duration-300">
-    <!-- Image -->
-    <div class="relative overflow-hidden">
-      <img 
-        :src="normalizeUrl(post.heroImage) || '/images/placeholder.jpg'" 
-        :alt="post.title"
-        class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-      />
-    </div>
-    
-    <!-- 内容区域 -->
-    <div class="p-6">
-      <!-- 日期 -->
-      <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-2">
-        {{ formatDate(post.date) }}
+  <router-link 
+    :to="{ name: 'PostDetail', params: { slug: post.slug } }"
+    class="block group"
+  >
+    <article class="card flex flex-col h-full overflow-hidden">
+      <!-- Image - 更宽的图片比例，参考 Medium/Vercel -->
+      <div class="relative overflow-hidden aspect-[4/3] rounded-t-lg">
+        <img 
+          :src="normalizeUrl(post.heroImage) || '/images/placeholder.jpg'" 
+          :alt="post.title"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
+        <!-- 渐变遮罩 -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       
-      <!-- Title -->
-      <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2">
-        {{ post.title }}
-      </h3>
-      
-      <!-- 摘要 -->
-      <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
-        {{ post.excerpt }}
-      </p>
-      
-      <!-- Tags -->
-      <div class="flex flex-wrap gap-2">
-        <span 
-          v-for="tag in post.tags" 
-          :key="tag"
-          class="tag"
-          :class="getTagColor(tag)"
-        >
-          {{ tag }}
-        </span>
+      <!-- 内容区域 - 紧凑设计，确保按钮始终可见 -->
+      <div class="p-5 flex flex-col flex-1 min-h-0">
+        <!-- 日期和标签 - 顶部信息 -->
+        <div class="flex items-center justify-between mb-3 flex-shrink-0">
+          <div class="text-xs text-gray-500 dark:text-gray-400 font-medium">
+            {{ formatDate(post.date) }}
+          </div>
+          <!-- 只显示第一个标签，保持简洁 -->
+          <span 
+            v-if="post.tags && post.tags.length > 0"
+            class="text-xs px-2 py-0.5 rounded-md font-medium"
+            :class="getTagColor(post.tags[0])"
+          >
+            {{ post.tags[0] }}
+          </span>
+        </div>
+        
+        <!-- Title - 更紧凑的标题 -->
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-brand transition-colors duration-200 flex-shrink-0">
+          {{ post.title }}
+        </h3>
+        
+        <!-- 摘要 - 最多2行，更紧凑 -->
+        <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 line-clamp-2 flex-shrink-0">
+          {{ post.excerpt }}
+        </p>
+        
+        <!-- 阅读更多按钮 - 始终在底部可见 -->
+        <div class="mt-auto pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between flex-shrink-0">
+          <span class="text-xs text-gray-500 dark:text-gray-400">
+            {{ post.tags && post.tags.length > 1 ? `${post.tags.length - 1} 个标签` : '' }}
+          </span>
+          <span class="inline-flex items-center text-sm font-medium text-brand group-hover:text-brand-dark transition-colors duration-200">
+            阅读更多
+            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </div>
       </div>
-      
-      <!-- 阅读更多按钮 -->
-      <div class="mt-4 flex justify-end">
-        <router-link 
-          :to="{ name: 'PostDetail', params: { slug: post.slug } }"
-          class="inline-flex items-center text-brand hover:text-brand-dark transition-colors duration-200"
-        >
-          <span class="text-sm font-medium">阅读更多</span>
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </router-link>
-      </div>
-    </div>
-  </article>
+    </article>
+  </router-link>
 </template>
 
 <script setup>
@@ -85,11 +91,11 @@ const formatDate = (dateString) => {
 
 const getTagColor = (tag) => {
   const colors = [
-    'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-    'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-    'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-    'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+    'bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800',
+    'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800',
+    'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800',
+    'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-800',
+    'bg-pink-50 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300 border border-pink-200 dark:border-pink-800'
   ]
   
   const index = tag.charCodeAt(0) % colors.length
@@ -101,13 +107,6 @@ const getTagColor = (tag) => {
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

@@ -7,10 +7,10 @@
 
 
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                          <!-- Post Meta -->
-          <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-4">
-            {{ formatDate(post.date) }}
-          </div>
+        <!-- Post Meta -->
+        <div class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-4">
+          {{ formatDate(post.date) }}
+        </div>
         <!-- 主体内容 -->
         <div class="prose prose-lg dark:prose-invert max-w-none">
           <!-- Hero Image -->
@@ -18,7 +18,8 @@
             <img 
               :src="normalizeUrl(post.heroImage)" 
               :alt="post.title"
-              class="w-full h-64 md:h-96 object-cover rounded-lg"
+              class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
+              loading="lazy"
             />
           </div>
           
@@ -27,25 +28,27 @@
         </div>
         
         <!-- 上下篇导航 -->
-        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between">
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between gap-4">
           <button 
             v-if="prevPost"
             @click="$router.push({ name: 'PostDetail', params: { slug: prevPost.slug } })"
-            class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200"
+            class="flex items-center space-x-2 px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 group"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
-            <span>上一篇</span>
+            <span class="font-medium">上一篇</span>
           </button>
+          
+          <div v-else class="flex-1"></div>
           
           <button 
             v-if="nextPost"
             @click="$router.push({ name: 'PostDetail', params: { slug: nextPost.slug } })"
-            class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 ml-auto"
+            class="flex items-center space-x-2 px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 group ml-auto"
           >
-            <span>下一篇</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span class="font-medium">下一篇</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -56,7 +59,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
@@ -203,11 +206,12 @@ const handleTagClick = (tag) => {
   console.log('Tag clicked:', tag)
 }
 
-onMounted(async () => {
+// 加载文章内容的函数
+const loadPostContent = async (slug) => {
   const posts = await loadPosts()
   allPosts.value = posts
   
-  const currentPost = getPostBySlug(posts, route.params.slug)
+  const currentPost = getPostBySlug(posts, slug)
   if (currentPost) {
     post.value = currentPost
     const html = marked(currentPost.body || '')
@@ -227,6 +231,19 @@ onMounted(async () => {
     }
   })
   allTags.value = Array.from(tags)
+}
+
+onMounted(async () => {
+  await loadPostContent(route.params.slug)
+})
+
+// 监听路由参数变化，当 slug 改变时重新加载内容
+watch(() => route.params.slug, async (newSlug) => {
+  if (newSlug) {
+    await loadPostContent(newSlug)
+    // 滚动到顶部
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 })
 </script>
 
@@ -235,20 +252,51 @@ onMounted(async () => {
   color: inherit;
 }
 
-.prose :deep(h1),
-.prose :deep(h2),
-.prose :deep(h3),
+.prose :deep(h1) {
+  color: inherit;
+  font-size: 2.25rem;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.prose :deep(h2) {
+  color: inherit;
+  font-size: 1.875rem;
+  line-height: 1.4;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.prose :deep(h3) {
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
 .prose :deep(h4),
 .prose :deep(h5),
 .prose :deep(h6) {
   color: inherit;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose :deep(p) {
   margin-bottom: 1.25rem;
-  line-height: 1.75;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .prose :deep(p) {
+    font-size: 1.0625rem;
+  }
 }
 
 .prose :deep(ul),
@@ -288,24 +336,30 @@ onMounted(async () => {
 /* 代码块容器与工具栏样式 */
 .prose :deep(.code-wrapper) {
   margin: 1.5rem 0;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: #f8f9fa;
 }
 .dark .prose :deep(.code-wrapper) {
-  border-color: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.15);
+  background: #1e1e1e;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 .prose :deep(.code-header) {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  justify-content: flex-start;
-  padding: 0.35rem 0.5rem;
-  background: #f5f7fa;
+  gap: 0.75rem;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #f1f3f5;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .dark .prose :deep(.code-header) {
-  background: #111827;
+  background: #252526;
+  border-bottom-color: rgba(255,255,255,0.1);
 }
 
 .prose :deep(.code-controls) { display: flex; gap: 0.4rem; }
@@ -314,24 +368,59 @@ onMounted(async () => {
 .prose :deep(.dot-yellow) { background: #ffbd2e; }
 .prose :deep(.dot-green) { background: #27c93f; }
 
-.prose :deep(.code-lang) { font-size: 0.7rem; opacity: 0.6; margin-left: 0.25rem; }
+.prose :deep(.code-lang) {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.dark .prose :deep(.code-lang) {
+  color: #9ca3af;
+}
 
 .prose :deep(.code-copy) {
   background: transparent;
-  border: none;
-  padding: 0.15rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
   color: #6b7280;
-  margin-left: auto;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.dark .prose :deep(.code-copy) { color: #9ca3af; }
+.prose :deep(.code-copy):hover {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.2);
+}
+.dark .prose :deep(.code-copy) {
+  color: #9ca3af;
+  border-color: rgba(255,255,255,0.2);
+}
+.dark .prose :deep(.code-copy):hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+}
 
 .prose :deep(a) {
   color: #3b82f6;
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  position: relative;
 }
 
-.prose :deep(a:hover) {
+.prose :deep(a):hover {
   color: #1d4ed8;
+  border-bottom-color: #3b82f6;
+}
+
+.dark .prose :deep(a) {
+  color: #60a5fa;
+}
+
+.dark .prose :deep(a):hover {
+  color: #93c5fd;
+  border-bottom-color: #60a5fa;
 }
 
 /* 暗色下不覆盖代码颜色，交由 highlight.js 主题控制 */
