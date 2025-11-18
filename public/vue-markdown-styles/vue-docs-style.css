@@ -1,0 +1,306 @@
+/**
+ * Vue.js 官方文档风格的 Markdown 样式
+ * 基于 Vue.js 官方文档的视觉设计
+ */
+
+/* 基础容器 */
+.vue-markdown {
+  color: #213547;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.dark .vue-markdown {
+  color: #aac8e4;
+}
+
+/* 标题样式 */
+.vue-markdown h1 {
+  font-size: 2.25em;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(60, 60, 60, 0.12);
+  color: #213547;
+}
+
+.dark .vue-markdown h1 {
+  border-bottom-color: rgba(84, 84, 84, 0.48);
+  color: #aac8e4;
+}
+
+.vue-markdown h2 {
+  font-size: 1.75em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(60, 60, 60, 0.12);
+  color: #213547;
+}
+
+.dark .vue-markdown h2 {
+  border-bottom-color: rgba(84, 84, 84, 0.48);
+  color: #aac8e4;
+}
+
+.vue-markdown h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  color: #213547;
+}
+
+.dark .vue-markdown h3 {
+  color: #aac8e4;
+}
+
+.vue-markdown h4 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #213547;
+}
+
+.dark .vue-markdown h4 {
+  color: #aac8e4;
+}
+
+.vue-markdown h5,
+.vue-markdown h6 {
+  font-size: 1em;
+  font-weight: 600;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+  color: #213547;
+}
+
+.dark .vue-markdown h5,
+.dark .vue-markdown h6 {
+  color: #aac8e4;
+}
+
+/* 段落 */
+.vue-markdown p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.7;
+}
+
+/* 链接 */
+.vue-markdown a {
+  color: #42b883;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(66, 184, 131, 0.3);
+  transition: all 0.2s;
+}
+
+.vue-markdown a:hover {
+  color: #35a372;
+  border-bottom-color: #42b883;
+}
+
+.dark .vue-markdown a {
+  color: #4dabf7;
+  border-bottom-color: rgba(77, 171, 247, 0.3);
+}
+
+.dark .vue-markdown a:hover {
+  color: #74c0fc;
+  border-bottom-color: #4dabf7;
+}
+
+/* 列表 */
+.vue-markdown ul,
+.vue-markdown ol {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.vue-markdown li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  line-height: 1.6;
+}
+
+.vue-markdown ul li {
+  list-style-type: disc;
+}
+
+.vue-markdown ol li {
+  list-style-type: decimal;
+}
+
+/* 引用块 */
+.vue-markdown blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid #42b883;
+  background-color: rgba(66, 184, 131, 0.1);
+  border-radius: 4px;
+  color: #213547;
+  /* 确保没有重复的边框 */
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.dark .vue-markdown blockquote {
+  border-left-color: #4dabf7;
+  background-color: rgba(77, 171, 247, 0.1);
+  color: #aac8e4;
+  /* 确保没有重复的边框 */
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.vue-markdown blockquote p {
+  margin: 0.5em 0;
+}
+
+/* 防止嵌套引用块产生多层边框 */
+.vue-markdown blockquote blockquote {
+  border-left: 3px solid #42b883;
+  margin-left: 0.5em;
+  background-color: rgba(66, 184, 131, 0.05);
+}
+
+.dark .vue-markdown blockquote blockquote {
+  border-left-color: #4dabf7;
+  background-color: rgba(77, 171, 247, 0.05);
+}
+
+/* 行内代码（不是代码块内的） */
+.vue-markdown code:not(pre code) {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 0.85em;
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  color: #e83e8c;
+}
+
+.dark .vue-markdown code:not(pre code) {
+  background-color: rgba(110, 118, 129, 0.4);
+  color: #c9a8f9;
+}
+
+.vue-markdown pre {
+  padding: 0;
+  margin: 1em 0;
+  overflow: auto;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  line-height: 1.45;
+}
+
+.dark .vue-markdown pre {
+  background-color: #161b22;
+}
+
+/* 代码块内的代码 - 完全保留 highlight.js 的样式 */
+.vue-markdown pre code {
+  display: block;
+  padding: 1em;
+  margin: 0;
+  overflow: auto;
+  line-height: 1.45;
+  font-size: 0.85em;
+  /* 完全不设置 background-color 和 color，让 highlight.js 主题完全控制 */
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  word-wrap: normal;
+  /* 不设置 color，让 highlight.js 主题完全控制 */
+}
+
+/* 确保 highlight.js 的样式能够应用，不覆盖任何颜色 */
+.vue-markdown pre code.hljs {
+  /* 只设置背景透明，不覆盖任何颜色 */
+  background: transparent !important;
+  /* 不设置 color，让 highlight.js 主题控制所有文字颜色 */
+}
+
+/* 表格 */
+.vue-markdown table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.vue-markdown table th,
+.vue-markdown table td {
+  border: 1px solid rgba(60, 60, 60, 0.12);
+  padding: 0.6em 1em;
+}
+
+.dark .vue-markdown table th,
+.dark .vue-markdown table td {
+  border-color: rgba(84, 84, 84, 0.48);
+}
+
+.vue-markdown table th {
+  font-weight: 600;
+  background-color: rgba(175, 184, 193, 0.2);
+}
+
+.dark .vue-markdown table th {
+  background-color: rgba(110, 118, 129, 0.2);
+}
+
+.vue-markdown table tr:nth-child(2n) {
+  background-color: rgba(175, 184, 193, 0.1);
+}
+
+.dark .vue-markdown table tr:nth-child(2n) {
+  background-color: rgba(110, 118, 129, 0.1);
+}
+
+/* 水平线 */
+.vue-markdown hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 1.5em 0;
+  background-color: rgba(60, 60, 60, 0.12);
+  border: 0;
+  border-radius: 2px;
+}
+
+.dark .vue-markdown hr {
+  background-color: rgba(84, 84, 84, 0.48);
+}
+
+/* 图片 */
+.vue-markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+/* 强调 */
+.vue-markdown strong {
+  font-weight: 600;
+  color: #213547;
+}
+
+.dark .vue-markdown strong {
+  color: #aac8e4;
+}
+
+.vue-markdown em {
+  font-style: italic;
+}
+

@@ -19,6 +19,7 @@ function transformPlantUML(md) {
   return md.replace(/```(plantuml|puml)\n([\s\S]*?)\n```/g, replacer)
 }
 
+
 function toSlug(path) {
   // 例如 ../../content/posts/2025-01-10-vite-and-vue3.md -> 2025-01-10-vite-and-vue3
   const name = path.split('/').pop() || ''
@@ -27,6 +28,8 @@ function toSlug(path) {
 
 function normalizePost(raw, slug) {
   const { attributes, body } = fm(raw)
+  // 只转换 PlantUML（Mermaid 由 marked renderer 处理）
+  const processedBody = transformPlantUML(body || '')
   return {
     slug,
     title: attributes?.title || slug,
@@ -35,7 +38,7 @@ function normalizePost(raw, slug) {
     excerpt: attributes?.excerpt || '',
     heroImage: attributes?.heroImage || '',
     draft: !!attributes?.draft,
-    body: transformPlantUML(body || '')
+    body: processedBody
   }
 }
 
@@ -54,7 +57,9 @@ export function getPostBySlug(posts, slug) {
 // 解析单个 Markdown 字符串，返回 { front matter 展开的字段, body }
 export function parseMarkdown(content) {
   const { attributes, body } = fm(content)
-  return { ...attributes, body: transformPlantUML(body) }
+  // 只转换 PlantUML（Mermaid 由 marked renderer 处理）
+  const processedBody = transformPlantUML(body)
+  return { ...attributes, body: processedBody }
 }
 
 // 获取所有标签
